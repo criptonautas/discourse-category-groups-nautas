@@ -35,4 +35,4 @@ es:
       hide_muted_subcategories: "Si está activado, la sección de silenciados solo muestra las categorías silenciadas. Si está desactivado, también muestra las categorías sin grupo que tienen una subcategoría silenciada."
       fancy_styling: "Activar estilos adicionales"
   ungrouped_categories_title: "Otros"
-  muted_categories_title: "Silenciados"
+  muted_categories_title: "Canales silenciados"

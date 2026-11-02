@@ -29,4 +29,4 @@ en:
       hide_muted_subcategories: "When enabled, the muted section only lists categories that are muted themselves. When disabled, it also lists ungrouped categories that have a muted subcategory."
       fancy_styling: "Turn on additional styling"
   ungrouped_categories_title: "Other"
-  muted_categories_title: "Muted"
+  muted_categories_title: "Muted channels"

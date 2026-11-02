@@ -44,7 +44,7 @@
   }
 
   .badge-category__wrapper {
-    font-size: unset;
+    font-size: var(--font-down-1);
   }
 
   .category-box-heading {
@@ -80,23 +80,13 @@
   align-items: center;
   padding-top: 0.5em;
 
+  text-transform: uppercase;
+
   h2 {
     margin-top: 0 !important; // too specific in core due to ID
     color: var(--primary);
-    font-size: var(--font-up-3);
-  }
-
-  .d-icon {
-    font-size: var(--font-up-2);
-    top: -0.25em; // alignment
-    margin-left: 0.33em;
-    color: var(--primary-medium);
-  }
-
-  &:hover {
-    .d-icon {
-      color: var(--primary);
-    }
+    font-size: var(--font-up-4);
+    font-weight: 800;
   }
 }
 

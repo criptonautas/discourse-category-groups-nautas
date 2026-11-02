@@ -1,9 +1,5 @@
 /* eslint-disable ember/no-classic-components, ember/require-tagless-components */
 import Component from "@ember/component";
-import { fn } from "@ember/helper";
-import { on } from "@ember/modifier";
-import { action } from "@ember/object";
-import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import CategoryLogo from "discourse/components/category-logo";
@@ -15,12 +11,7 @@ import borderColor from "discourse/helpers/border-color";
 import categoryLink, {
   categoryBadgeHTML,
 } from "discourse/helpers/category-link";
-import icon from "discourse/helpers/d-icon";
 import lazyHash from "discourse/helpers/lazy-hash";
-import {
-  addUniqueValueToArray,
-  removeValueFromArray,
-} from "discourse/lib/array-tools";
 import { slugify } from "discourse/lib/utilities";
 import DDecoratedHtml from "discourse/ui-kit/d-decorated-html";
 import dDirSpan from "discourse/ui-kit/helpers/d-dir-span";
@@ -163,8 +154,8 @@ export default class CategoriesGroups extends Component {
 
       if (items.length > 0) {
         // `slug` is derived from the default name so it stays stable across
-        // locales (used for CSS classes and localStorage collapse state),
-        // while `name` is the localized label shown to the user.
+        // locales (used for CSS classes), while `name` is the localized label
+        // shown to the user.
         groups.push({
           name: this.localizedGroupName(obj),
           slug: slugify(obj.name),
@@ -224,58 +215,15 @@ export default class CategoriesGroups extends Component {
     return categoryGroupList;
   }
 
-  @action
-  toggleCategories(slug, event) {
-    event.preventDefault();
-
-    const storedCategories =
-      JSON.parse(localStorage.getItem("categoryGroups")) || [];
-    const categoryClass = `.custom-category-group-${slug}`;
-
-    if (storedCategories.includes(categoryClass)) {
-      removeValueFromArray(storedCategories, categoryClass);
-      document.querySelector(categoryClass)?.classList.add("is-expanded");
-    } else {
-      addUniqueValueToArray(storedCategories, categoryClass);
-      document.querySelector(categoryClass)?.classList.remove("is-expanded");
-    }
-
-    localStorage.setItem("categoryGroups", JSON.stringify(storedCategories));
-  }
-
-  @action
-  initializeLocalStorage() {
-    if (!localStorage.getItem("categoryGroups")) {
-      localStorage.setItem(
-        "categoryGroups",
-        JSON.stringify([".custom-category-group-muted"])
-      );
-    }
-
-    const storedCategories = JSON.parse(localStorage.getItem("categoryGroups"));
-    storedCategories.forEach((category) => {
-      document.querySelector(category)?.classList.remove("is-expanded");
-    });
-  }
-
   <template>
     {{#if this.shouldShow}}
       <section class="category-boxes with-logos with-subcategories">
-        <div
-          class="custom-categories-groups"
-          {{didInsert this.initializeLocalStorage}}
-        >
+        <div class="custom-categories-groups">
           {{#each this.categoryGroupList as |t|}}
             <div class="custom-category-group-{{t.slug}} is-expanded">
-              <a
-                {{on "click" (fn this.toggleCategories t.slug)}}
-                href
-                id={{t.slug}}
-                class="custom-category-group-toggle"
-              >
+              <div id={{t.slug}} class="custom-category-group-toggle">
                 <h2>{{t.name}}</h2>
-                {{icon "angle-right"}}
-              </a>
+              </div>
 
               <ul class="custom-category-group">
                 {{#each t.items as |c|}}
