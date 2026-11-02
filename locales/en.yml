@@ -16,13 +16,17 @@ en:
               description: "Any unique identifier for this link (e.g. my-link)."
             color:
               description: "Use hex format, e.g. #00ff00"
+            description_key:
+              description: "Translation key to use as the description, e.g. to reuse a plugin's text. Takes priority over the description and its translations."
+            translations:
+              description: "Title and description of this link per locale (e.g. locale 'fr')."
             show_before:
               description: "The extra link will appear before this category."
             show_in_group:
               description: "The extra link will appear at the end of the group with this name (use the group's default, untranslated name). Allows a group to contain only links. If no group matches, the link falls back to the ungrouped section."
       show_on_mobile: "Show the collapsible category box groups on mobile"
       show_ungrouped: "Display a group of categories that aren't assigned to another group"
-      hide_muted_subcategories: "When enabled, a non-muted parent category will not appear under the muted section if it has a muted subcategory"
+      hide_muted_subcategories: "When enabled, the muted section only lists categories that are muted themselves. When disabled, it also lists ungrouped categories that have a muted subcategory."
       fancy_styling: "Turn on additional styling"
   ungrouped_categories_title: "Other"
   muted_categories_title: "Muted"
