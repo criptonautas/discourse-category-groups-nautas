@@ -108,7 +108,7 @@ export default class CategoriesGroups extends Component {
     const categoryGroupList = parsedSettings.reduce((groups, obj) => {
       const groupCategories = (obj.categories || [])
         .map((id) =>
-          this.categories.find((cat) => cat.id === Number(id) && !cat.hasMuted)
+          this.categories.find((cat) => cat.id === Number(id) && !cat.isMuted)
         )
         .filter(Boolean);
 
@@ -160,7 +160,9 @@ export default class CategoriesGroups extends Component {
     // Find muted categories
     const mutedCategories = settings.hide_muted_subcategories
       ? this.categories.filter((c) => c.notification_level === 0)
-      : this.categories.filter((c) => c.hasMuted);
+      : this.categories.filter(
+          (c) => c.hasMuted && !foundCategories.includes(c.slug)
+        );
 
     // Links whose show_in_group matches no group name (typo or a renamed
     // group) fall back to the ungrouped section instead of disappearing.
