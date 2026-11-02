@@ -95,6 +95,8 @@ extra_links:
         required: true
       description:
         type: string
+      description_key:
+        type: string
       icon:
         type: string
       show_before:

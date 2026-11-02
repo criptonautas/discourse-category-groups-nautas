@@ -37,7 +37,10 @@ const ExtraLink = class {
       (t) => t.locale === I18nInstance.currentLocale()
     );
     this.title = translation?.title || args.title;
-    this.description = translation?.description || args.description;
+    // A translation key lets a plugin's own, already translated text be reused.
+    this.description = args.description_key
+      ? i18n(args.description_key)
+      : translation?.description || args.description;
     this.icon = args.icon;
   }
 };
