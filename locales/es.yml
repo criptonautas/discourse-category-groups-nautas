@@ -8,9 +8,31 @@ es:
   theme_metadata:
     description: "página de categoría personalizada con ajustes de grupo"
     settings:
+      category_groups:
+        description: "Definir cada grupo con un nombre y las categorías que contiene, en el orden en que se muestran. Usar el campo de traducciones para adaptar el nombre del grupo a cada idioma (por ejemplo, el idioma «fr»)."
+        schema:
+          properties:
+            visibility:
+              description: "Solo los miembros de estos grupos verán este grupo de categorías en la página de categorías. Dejar vacío para mostrarlo a todos. Solo controla si el grupo se muestra aquí: no cambia los permisos de las categorías, que siguen visibles en el resto del sitio."
+      extra_links:
+        description: "Enlaces adicionales que se pueden intercalar en la lista de categorías. Usar «show before» para colocar un enlace antes de una categoría o «show in group» para añadirlo al final de un grupo."
+        schema:
+          properties:
+            id:
+              description: "Cualquier identificador único para este enlace (por ejemplo, mi-enlace)."
+            color:
+              description: "Usar formato hexadecimal, por ejemplo, #00ff00"
+            description_key:
+              description: "Clave de traducción que se usará como descripción, por ejemplo, para reutilizar el texto de un plugin. Tiene prioridad sobre la descripción y sus traducciones."
+            translations:
+              description: "Título y descripción de este enlace en cada idioma (por ejemplo, el idioma «fr»)."
+            show_before:
+              description: "El enlace adicional aparecerá antes de esta categoría."
+            show_in_group:
+              description: "El enlace adicional aparecerá al final del grupo con este nombre (usar el nombre predeterminado del grupo, sin traducir). Permite que un grupo contenga solo enlaces. Si ningún grupo coincide, el enlace pasa a la sección de categorías sin grupo."
       show_on_mobile: "Mostrar los grupos de cajas de categorías plegables en el móvil"
       show_ungrouped: "Mostrar un grupo de categorías que no están asignadas a otro grupo"
-      hide_muted_subcategories: "Si está activada, una categoría principal no silenciada no aparecerá en la sección silenciada si tiene una subcategoría silenciada."
+      hide_muted_subcategories: "Si está activado, la sección de silenciados solo muestra las categorías silenciadas. Si está desactivado, también muestra las categorías sin grupo que tienen una subcategoría silenciada."
       fancy_styling: "Activar estilos adicionales"
   ungrouped_categories_title: "Otros"
   muted_categories_title: "Silenciados"
