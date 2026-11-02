@@ -22,6 +22,8 @@ import {
   removeValueFromArray,
 } from "discourse/lib/array-tools";
 import { slugify } from "discourse/lib/utilities";
+import DDecoratedHtml from "discourse/ui-kit/d-decorated-html";
+import dDirSpan from "discourse/ui-kit/helpers/d-dir-span";
 import I18nInstance, { i18n } from "discourse-i18n";
 import CategoryGroupExtraLink from "./category-group-extra-link";
 
@@ -292,7 +294,12 @@ export default class CategoriesGroups extends Component {
                           </div>
 
                           <div class="description">
-                            {{htmlSafe c.description_excerpt}}
+                            <DDecoratedHtml
+                              @html={{dDirSpan
+                                c.description_excerpt
+                                htmlSafe="true"
+                              }}
+                            />
                           </div>
                           {{#if c.isGrandParent}}
                             {{#each c.subcategories as |subcategory|}}
