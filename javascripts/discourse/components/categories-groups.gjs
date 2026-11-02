@@ -45,6 +45,7 @@ const ExtraLink = class {
 export default class CategoriesGroups extends Component {
   @service currentUser;
   @service router;
+  @service site;
   @service siteSettings;
 
   isVisibleToCurrentUser(group) {
@@ -74,6 +75,16 @@ export default class CategoriesGroups extends Component {
     return (
       currentRoute === "discovery.categories" &&
       categoryPageStyle.includes("boxes")
+    );
+  }
+
+  // A subcategory listed in a group has its own box, so its parent doesn't repeat it.
+  subcategoryPills(category) {
+    const grouped = settings.category_groups.flatMap((group) =>
+      (group.categories || []).map(Number)
+    );
+    return (category.subcategories || []).filter(
+      (subcategory) => !grouped.includes(subcategory.id)
     );
   }
 
@@ -113,7 +124,10 @@ export default class CategoriesGroups extends Component {
     const categoryGroupList = parsedSettings.reduce((groups, obj) => {
       const groupCategories = (obj.categories || [])
         .map((id) =>
-          this.categories.find((cat) => cat.id === Number(id) && !cat.isMuted)
+          // The site list, not this.categories: that one is top-level only.
+          this.site.categories.find(
+            (cat) => cat.id === Number(id) && !cat.isMuted
+          )
         )
         .filter(Boolean);
 
@@ -345,9 +359,9 @@ export default class CategoriesGroups extends Component {
                                 </div>
                               </div>
                             {{/each}}
-                          {{else if c.subcategories}}
+                          {{else if (this.subcategoryPills c)}}
                             <div class="subcategories">
-                              {{#each c.subcategories as |sc|}}
+                              {{#each (this.subcategoryPills c) as |sc|}}
                                 <a class="subcategory" href={{sc.url}}>
                                   <span class="subcategory-image-placeholder">
                                     <CdnImg
