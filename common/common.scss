@@ -60,6 +60,21 @@
   }
 }
 
+// Criptonautas design choice, not meant for upstream: readable pills, easy to tap.
+.custom-category-group .subcategories {
+  gap: 0.35rem 0.75rem;
+  margin-top: 0.6rem;
+
+  .badge-category__wrapper {
+    font-size: var(--font-0);
+  }
+
+  .badge-category .d-icon {
+    width: 1.1em;
+    height: 1.1em;
+  }
+}
+
 .custom-category-group-toggle {
   display: flex;
   align-items: center;
