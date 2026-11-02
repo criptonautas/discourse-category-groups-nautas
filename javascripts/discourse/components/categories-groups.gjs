@@ -33,8 +33,11 @@ const ExtraLink = class {
     this.id = args.id;
     this.url = args.url;
     this.color = args.color;
-    this.title = args.title;
-    this.description = args.description;
+    const translation = (args.translations || []).find(
+      (t) => t.locale === I18nInstance.currentLocale()
+    );
+    this.title = translation?.title || args.title;
+    this.description = translation?.description || args.description;
     this.icon = args.icon;
   }
 };
