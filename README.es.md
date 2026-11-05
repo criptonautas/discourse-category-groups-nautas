@@ -4,7 +4,7 @@
 
 Mantenido por Criptonautas. Sin afiliación ni respaldo de Discourse (Civilized Discourse Construction Kit, Inc.).
 
-Fork de [discourse-category-groups-component](https://github.com/discourse/discourse-category-groups-component). Instala la rama `nautas`. La rama `main` conserva un fork anterior, ya obsoleto.
+Fork de [discourse-category-groups-component](https://github.com/discourse/discourse-category-groups-component).
 
 Diferencias con el original:
 

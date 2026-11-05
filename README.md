@@ -4,7 +4,7 @@
 
 Maintained by Criptonautas. Not affiliated with or endorsed by Discourse (Civilized Discourse Construction Kit, Inc.).
 
-Fork of [discourse-category-groups-component](https://github.com/discourse/discourse-category-groups-component). Install the `nautas` branch. The `main` branch keeps an older fork, now superseded.
+Fork of [discourse-category-groups-component](https://github.com/discourse/discourse-category-groups-component).
 
 Differences from the original:
 
