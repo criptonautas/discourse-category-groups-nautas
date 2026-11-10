@@ -45,7 +45,7 @@ RSpec.describe "Category Groups", system: true do
     visit "/categories"
 
     extra_link = find(".extra-link-#{id}")
-    expect(extra_link).to have_text title
+    expect(extra_link).to have_text(/#{Regexp.escape(title)}/i)
     expect(extra_link[:innerHTML]).to include PrettyText.cook(description)
     extra_link.find("a").click
     expect(page).to have_selector(
@@ -84,12 +84,13 @@ RSpec.describe "Category Groups", system: true do
     )
   end
 
+  # The group title is uppercased in CSS, and Capybara matches the rendered text.
   it "displays the group name in the default locale" do
     visit "/categories"
 
     expect(page).to have_css(
       ".custom-category-group-default-categories h2",
-      text: "Default Categories",
+      text: /default categories/i,
     )
   end
 
@@ -101,7 +102,7 @@ RSpec.describe "Category Groups", system: true do
 
     expect(page).to have_css(
       ".custom-category-group-default-categories h2",
-      text: "Catégories par défaut",
+      text: /catégories par défaut/i,
     )
   end
 
