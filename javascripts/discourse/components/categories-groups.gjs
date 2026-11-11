@@ -49,7 +49,7 @@ export default class CategoriesGroups extends Component {
       return true;
     }
 
-    return (this.currentUser?.groups || []).some((g) =>
+    return (this.currentUser?.visibleGroups || []).some((g) =>
       visibility.includes(g.id)
     );
   }
