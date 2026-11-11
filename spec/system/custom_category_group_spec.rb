@@ -47,7 +47,7 @@ RSpec.describe "Category Groups", system: true do
     extra_link = find(".extra-link-#{id}")
     expect(extra_link).to have_text(/#{Regexp.escape(title)}/i)
     expect(extra_link[:innerHTML]).to include PrettyText.cook(description)
-    extra_link.find("a").click
+    extra_link.find("a .title").click
     expect(page).to have_selector(
       "h1",
       text: I18n.t("js.discovery.headings.category.latest", category: category.name),
