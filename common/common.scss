@@ -61,9 +61,21 @@
 }
 
 // Criptonautas design choice, not meant for upstream: readable pills, easy to tap.
+// The inner box carries Horizon's rounder background; the box's own would show at the corners.
+.custom-category-group li.category-box {
+  background: transparent;
+}
+
 .custom-category-group .subcategories {
   gap: 0.35rem 0.75rem;
   margin-top: 0.6rem;
+
+  // The gaps between pills fall through to the category link underneath.
+  pointer-events: none;
+
+  .subcategory {
+    pointer-events: auto;
+  }
 
   .badge-category__wrapper {
     font-size: var(--font-0);
